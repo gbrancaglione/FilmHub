@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "235306642045",
+    "firebase_url": "https://filmhub-9f211.firebaseio.com",
+    "project_id": "filmhub-9f211",
+    "storage_bucket": "filmhub-9f211.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235306642045:android:8969985b0a677f9f",
+        "android_client_info": {
+          "package_name": "com.example.filmhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "235306642045-t8h92npl5fk8o3kr5p5nooqhdeu1cjkb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.filmhub",
+            "certificate_hash": "1551009f7ce42d960d2d5fa3bce8353f41099c87"
+          }
+        },
+        {
+          "client_id": "235306642045-0uop55vglvis9c7rin1l8v5qmpje8c3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzRf2jw9oLfj6tCX23hXh-bMg8ybORvjM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "235306642045-0uop55vglvis9c7rin1l8v5qmpje8c3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
