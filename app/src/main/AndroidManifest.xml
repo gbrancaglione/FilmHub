@@ -29,6 +29,12 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+        <activity
+            android:name=".AccountCreationActivity"
+            android:label="Création de compte">
+
+        </activity>
+
     </application>
 
 </manifest>

@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,6 +40,8 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
+    private String TAG = "MonTag";
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -88,6 +91,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 attemptLogin();
+            }
+        });
+
+        Button RegisterButton = (Button) findViewById(R.id.register_button);
+        RegisterButton.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent i = new Intent(LoginActivity.this, AccountCreationActivity.class);
+                Log.d(TAG,"Go to account creation");
+                startActivity(i);
             }
         });
 
