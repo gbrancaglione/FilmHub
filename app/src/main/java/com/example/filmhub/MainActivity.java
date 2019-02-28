@@ -118,8 +118,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-           getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                   new ProfileActivity()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new ProfileActivity()).commit();
 
         } else if (id == R.id.nav_gallery) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

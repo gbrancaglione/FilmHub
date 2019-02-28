@@ -24,11 +24,11 @@
 
         <activity android:name=".AccountCreationActivity"></activity>
 
-        <activity android:name=".CommentReviewActivity"></activity>7
+        <activity android:name=".CommentReviewActivity"></activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login">
-<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
