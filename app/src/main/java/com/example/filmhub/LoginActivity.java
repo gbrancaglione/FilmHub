@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private AutoCompleteTextView loginEmail;
     private EditText loginPass;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,8 +97,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if (resultCode == RESULT_OK) {
                 // Sign in succeeded
                 updateUI(mAuth.getCurrentUser());
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(i);
             } else {
                 // Sign in failed
                 Toast.makeText(this, "Sign In Failed", Toast.LENGTH_SHORT).show();
@@ -122,14 +121,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void updateUI(FirebaseUser user) {
         if (user != null) {
             // Signed in
-            getString(R.string.firebaseui_status_fmt, user.getEmail());
-            getString(R.string.id_fmt, user.getUid());
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(i);
 
 
         } else {
-            // Signed out
-            loginEmail.setText(null);
-            loginPass.setText(null);
+
 
         }
     }
@@ -148,5 +145,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startSignIn();
                 break;
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
     }
 }
