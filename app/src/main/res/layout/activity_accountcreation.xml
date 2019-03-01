@@ -41,7 +41,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email" />
+            android:text="Email"
+            />
 
         <AutoCompleteTextView
             android:id="@+id/EmailCreation"
@@ -62,7 +63,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mot de passe" />
+            android:text="Mot de passe"
+            />
 
         <AutoCompleteTextView
             android:id="@+id/PasswordCreation"
@@ -87,7 +89,7 @@
             android:text="Confirmer le mot de passe" />
 
         <AutoCompleteTextView
-            android:id="@+id/PasswordVerificationCreation"
+            android:id="@+id/PasswordVerif"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirm password"
@@ -118,7 +120,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/buttonCreation"
+        android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

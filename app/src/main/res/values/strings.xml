@@ -19,4 +19,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="firebaseui_status_fmt">%s</string>
+    <string name="id_fmt">%s</string>
+    <string name="signed_out">Signed Out</string>
+
 </resources>
