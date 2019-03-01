@@ -22,7 +22,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.opencsv.CSVReader;
+//import com.opencsv.CSVReader;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -53,8 +53,11 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        //.setAction("Action", null).show();
+                Intent i = new Intent(MainActivity.this, CommentReviewActivity.class);
+                Log.d(TAG,"Go to commentaire review");
+                startActivity(i);
             }
         });
 

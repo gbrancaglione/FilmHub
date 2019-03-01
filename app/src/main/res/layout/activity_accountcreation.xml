@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="Nom d'utilisateur" />
 
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/NameCreation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:text="Email" />
 
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/EmailCreation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:text="Mot de passe" />
 
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/PasswordCreation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:text="Confirmer le mot de passe" />
 
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/PasswordVerificationCreation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
