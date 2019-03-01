@@ -2,8 +2,10 @@ package com.example.filmhub;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,12 +16,30 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+//import com.opencsv.CSVReader;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG ="debug" ;
+    private static final String COMMA_DELIMITER = ",";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +54,11 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        //.setAction("Action", null).show();
+                Intent i = new Intent(MainActivity.this, CommentReviewActivity.class);
+                Log.d(TAG,"Go to commentaire review");
+                startActivity(i);
             }
         });
 
@@ -47,8 +70,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     }
 
     @Override
@@ -90,10 +113,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent profileIntent = new Intent(MainActivity.this, ProfileActivity.class);
-            startActivity(profileIntent);
+           getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                   new ProfileActivity()).commit();
 
         } else if (id == R.id.nav_gallery) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new listeFilms()).commit();
 
         } else if (id == R.id.nav_slideshow) {
 
