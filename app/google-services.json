@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "235306642045-c8i8r6tsa39kad4qflppd9fode77prfq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.filmhub",
+            "certificate_hash": "227a4edc378f69635f544fd74da826aed85d4db7"
+          }
+        },
+        {
           "client_id": "235306642045-0uop55vglvis9c7rin1l8v5qmpje8c3q.apps.googleusercontent.com",
           "client_type": 3
         }
