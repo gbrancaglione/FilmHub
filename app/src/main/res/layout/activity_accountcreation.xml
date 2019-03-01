@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/PrimaryBackgroundColor"
+    android:background="@color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="Nom d'utilisateur" />
 
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/NameCreation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,9 +41,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email" />
+            android:text="Email"
+            />
 
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/EmailCreation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,9 +63,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mot de passe" />
+            android:text="Mot de passe"
+            />
 
-        <AutoCompleteTextView
+        <EditText
             android:id="@+id/PasswordCreation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,8 +88,8 @@
             android:layout_height="wrap_content"
             android:text="Confirmer le mot de passe" />
 
-        <AutoCompleteTextView
-            android:id="@+id/PasswordVerificationCreation"
+        <EditText
+            android:id="@+id/PasswordVerif"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirm password"
@@ -118,11 +120,11 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/buttonCreation"
+        android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/SecondaryBackgroundColor"
+        android:background="@color/black"
         android:text="Inscription"
         android:textColor="@color/white"
         android:textStyle="bold"/>
