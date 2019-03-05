@@ -17,13 +17,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-//import com.opencsv.CSVReader;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+
+import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -40,6 +46,7 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG ="debug" ;
     private static final String COMMA_DELIMITER = ",";
+    JSONArray jsonArray = new JSONArray();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +78,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -113,8 +118,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-           getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                   new ProfileActivity()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new ProfileActivity()).commit();
 
         } else if (id == R.id.nav_gallery) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

@@ -88,11 +88,10 @@ public class AccountCreationActivity extends AppCompatActivity {
 
             mDatabase = FirebaseDatabase.getInstance().getReference();
 
-            email = (AutoCompleteTextView) findViewById(R.id.EmailCreation);
-            password = (AutoCompleteTextView) findViewById(R.id.PasswordCreation);
-            passwordVerifi = (AutoCompleteTextView) findViewById(R.id.PasswordVerif);
-            registerButton = (Button) findViewById(R.id.registerButton);
-            nameCrea = (AutoCompleteTextView) findViewById(R.id.NameCreation);
+            email = (EditText) findViewById(R.id.EmailCreation);
+            password = (EditText) findViewById(R.id.PasswordCreation);
+            registerButton = (Button) findViewById(R.id.register_button);
+            nameCrea = (EditText) findViewById(R.id.NameCreation);
 
             firebaseAuth = FirebaseAuth.getInstance();
 

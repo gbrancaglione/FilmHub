@@ -7,6 +7,6 @@
     tools:context=".listeFilms">
 <TextView
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Salut mec"/>
+    android:id="@+id/textList"
+    android:layout_height="wrap_content" />
 </android.support.constraint.ConstraintLayout>
