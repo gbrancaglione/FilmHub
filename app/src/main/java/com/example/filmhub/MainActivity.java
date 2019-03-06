@@ -44,7 +44,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG ="debug" ;
+    private static final String TAG ="MonTag" ;
     private static final String COMMA_DELIMITER = ",";
     JSONArray jsonArray = new JSONArray();
 
@@ -63,9 +63,12 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         //.setAction("Action", null).show();
-                Intent i = new Intent(MainActivity.this, CommentReviewActivity.class);
-                Log.d(TAG,"Go to commentaire review");
-                startActivity(i);
+                /*Intent i = new Intent(MainActivity.this, FilmActivity.class);
+                Log.d(TAG,"Go to film reviews");
+                startActivity(i);*/
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new FilmActivity()).commit();
             }
         });
 
