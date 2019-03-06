@@ -39,6 +39,12 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".FilmActivity"
+            android:label="FilmHub - film"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 
