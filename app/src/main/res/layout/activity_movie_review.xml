@@ -21,29 +21,67 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/affiche_film"
                     android:layout_width="139dp"
                     android:layout_height="150dp"
-                    android:src="@drawable/ratings" />
+                    android:id="@+id/film_affiche"
+                    android:src="@drawable/ratings"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/film_annee"
+                        android:text="2019"
+                        android:layout_gravity="right"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/film_genre"
+                        android:text="Science-Fiction"
+                        android:layout_gravity="right"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/film_realisateur"
+                        android:text="James Cameron"
+                        android:layout_gravity="right"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/film_pays"
+                        android:text="Etats-Unis"
+                        android:layout_gravity="right"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="right">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/titre_film"
+                    android:id="@+id/film_titre"
                     android:text="Alita Battle Angel"
-                    android:textSize="30dp" />
+                    android:textSize="30dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/synopsis_film"
+                    android:id="@+id/film_description"
                     android:text="@string/Lorem_court"
                     android:textSize="13dp"/>
 
@@ -57,13 +95,14 @@
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:numStars="5"
-                        android:rating="3"/>
+                        android:rating="3"
+                        android:id="@+id/film_noteGlobale"/>
 
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ecrire une review "
-                        android:id="@+id/bouton_ecrire_review"/>
+                        android:text="Ecrire une review"
+                        android:id="@+id/film_bouton_ecrire_review"/>
 
                 </LinearLayout>
 
