@@ -1,5 +1,6 @@
 package com.example.filmhub;
 
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,9 +11,12 @@ import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.squareup.picasso.Picasso;
 
 public class FilmsAdapter extends FirestoreRecyclerAdapter<Films,FilmsAdapter.FilmsHolder> {
+    private OnItemClickListener listener;
+
 
 
 
@@ -36,15 +40,29 @@ public class FilmsAdapter extends FirestoreRecyclerAdapter<Films,FilmsAdapter.Fi
 
     class FilmsHolder extends RecyclerView.ViewHolder {
         ImageView imageFilm;
-        TextView nomFilm,link;
+        TextView nomFilm;
         public FilmsHolder(@NonNull View itemView) {
             super(itemView);
             nomFilm = itemView.findViewById(R.id.nomFilm);
             imageFilm = itemView.findViewById(R.id.imageFilm);
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    int position = getAdapterPosition();
+                    if (position!=RecyclerView.NO_POSITION && listener!= null){
+                        listener.onItemClick(getSnapshots().getSnapshot(position),position);
+                    }
 
-
+                }
+            });
 
         }
-    }
 
+    }
+    public interface OnItemClickListener{
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
 }
