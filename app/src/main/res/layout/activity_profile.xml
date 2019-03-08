@@ -44,7 +44,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/filmTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -69,7 +69,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textStyle="italic"
                     app:layout_constraintStart_toEndOf="@+id/profilePicture"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                    app:layout_constraintTop_toBottomOf="@+id/filmTitle" />
             </LinearLayout>
 
 
@@ -93,7 +93,7 @@
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonEdit" />
+                 />
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -150,10 +150,9 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/reviewsList"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="idem que pour les films que j'aime" />
+                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:id="@+id/textView8"
