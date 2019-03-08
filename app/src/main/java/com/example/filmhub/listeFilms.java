@@ -54,7 +54,11 @@ public class listeFilms extends Fragment implements FilmsAdapter.OnItemClickList
                Films film = documentSnapshot.toObject(Films.class);
                String id = documentSnapshot.getId();
                Toast.makeText(getContext(),"Position : " +position + " ID : "+id,Toast.LENGTH_SHORT).show();
-               Intent i = new Intent(getContext(), CommentReviewActivity.class);
+               Intent i = new Intent(getContext(), FilmActivity.class);
+               Bundle bundle = new Bundle();
+               bundle.putParcelable("film", film);
+               bundle.putString("id", id);
+               i.putExtras(bundle);
                startActivity(i);
            }
        });

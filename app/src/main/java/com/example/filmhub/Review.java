@@ -5,18 +5,22 @@ import android.os.Parcelable;
 
 public class Review implements Parcelable {
     private String auteur;
-    private String texte;
+    private String review;
     private Integer note;
 
-    public Review(String auteur, String texte, Integer note) {
+    public Review() {
+
+    }
+
+    public Review(String auteur, String review, Integer note) {
         this.auteur = auteur;
-        this.texte = texte;
+        this.review = review;
         this.note = note;
     }
 
     protected Review(Parcel in) {
         auteur = in.readString();
-        texte = in.readString();
+        review = in.readString();
         if (in.readByte() == 0) {
             note = null;
         } else {
@@ -40,8 +44,8 @@ public class Review implements Parcelable {
         return auteur;
     }
 
-    public String getTexte() {
-        return texte;
+    public String getReview() {
+        return review;
     }
 
     public Integer getNote() {
@@ -52,8 +56,8 @@ public class Review implements Parcelable {
         this.auteur = auteur;
     }
 
-    public void setTexte(String texte) {
-        this.texte = texte;
+    public void setReview(String texte) {
+        this.review = texte;
     }
 
     public void setNote(Integer note) {
@@ -68,7 +72,7 @@ public class Review implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(auteur);
-        dest.writeString(texte);
+        dest.writeString(review);
         dest.writeInt(note);
     }
 }
