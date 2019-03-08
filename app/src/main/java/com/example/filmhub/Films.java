@@ -4,10 +4,10 @@ public class Films {
     private String nomFilm;
     private String realisateur;
     private String genre;
-    private String annee;
+    private int annee;
     private String description;
     private String pays;
-    private String image;
+    private String imageFilm;
 
     public String getNomFilm() {
         return nomFilm;
@@ -21,7 +21,7 @@ public class Films {
         return genre;
     }
 
-    public String getAnnee() {
+    public int getAnnee() {
         return annee;
     }
 
@@ -33,17 +33,21 @@ public class Films {
         return pays;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageFilm() {
+        return imageFilm;
     }
 
-    public Films(String nomFilm, String realisateur, String genre, String annee, String description, String pays, String image) {
+    public Films(){
+
+    }
+
+    public Films(String nomFilm, String realisateur, String genre, int annee, String description, String pays, String imageFilm) {
         this.nomFilm = nomFilm;
         this.realisateur = realisateur;
         this.genre = genre;
         this.annee = annee;
         this.description = description;
         this.pays = pays;
-        this.image = image;
+        this.imageFilm = imageFilm;
     }
 }
