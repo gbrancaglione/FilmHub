@@ -63,12 +63,37 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         //.setAction("Action", null).show();
-                /*Intent i = new Intent(MainActivity.this, FilmActivity.class);
+                Intent i = new Intent(MainActivity.this, FilmActivity.class);
                 Log.d(TAG,"Go to film reviews");
-                startActivity(i);*/
+                startActivity(i);
 
+                /*
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new FilmActivity()).commit();
+                */
+            }
+        });
+
+        FloatingActionButton fab_perso = (FloatingActionButton) findViewById(R.id.fab_perso);
+        fab_perso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //.setAction("Action", null).show();
+                Intent i = new Intent(MainActivity.this, FilmActivity.class);
+                Bundle bundle = new Bundle();
+                //bundle.putString("film_titre", "Megaman");
+                //bundle.putString("film_annee", "2015");
+                Review review = new Review("Alphonse", "Je kiffe sa race", 5);
+                bundle.putParcelable("review", review);
+                i.putExtras(bundle);
+                Log.d(TAG,"Go to Megaman");
+                startActivity(i);
+
+                /*
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new FilmActivity()).commit();
+                */
             }
         });
 

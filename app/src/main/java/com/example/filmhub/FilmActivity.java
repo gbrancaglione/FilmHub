@@ -23,7 +23,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-public class FilmActivity extends Fragment {
+public class FilmActivity extends AppCompatActivity {
 
     static final String TAG = "MonTag";
 
@@ -32,7 +32,7 @@ public class FilmActivity extends Fragment {
     public TextView list;
     private List<Review> reviews;
 
-    /*
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         FirebaseApp.initializeApp(this);
@@ -41,6 +41,35 @@ public class FilmActivity extends Fragment {
         setContentView(R.layout.activity_movie_review);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Intent i = getIntent();
+        Bundle bundle = getIntent().getExtras();
+        if (i != null){
+            // Le code pour récupérer les extras ira ici
+            String film_titre = "";
+            /*if (i.hasExtra("film_titre")){ // vérifie qu'une valeur est associée à la clé “edittext”
+                film_titre = bundle.getString("film_titre"); // on récupère la valeur associée à la clé
+                TextView film_titreTextView = (TextView) findViewById(R.id.film_titre);
+                film_titreTextView.setText(film_titre);
+            }
+
+            String film_annee = "";
+            if (i.hasExtra("film_annee")) {
+                film_annee = bundle.getString("film_annee");
+                TextView film_anneeTextView = (TextView) findViewById(R.id.film_annee);
+                film_anneeTextView.setText(film_annee);
+            }
+            */
+
+            String auteur = "";
+            if (i.hasExtra("review")) {
+                Review review = bundle.getParcelable("review");
+                auteur = review.getAuteur();
+                TextView film_realisateurTextView = (TextView) findViewById(R.id.film_realisateur);
+                film_realisateurTextView.setText(auteur);
+            }
+
+        }
 
         Button button = findViewById(R.id.film_bouton_ecrire_review);
         button.setOnClickListener(new View.OnClickListener() {
@@ -55,9 +84,9 @@ public class FilmActivity extends Fragment {
             }
         });
 
-    } */
+    }
 
-
+    /*
     public View onCreateView(LayoutInflater inflater, @android.support.annotation.Nullable ViewGroup container, Bundle savedInstance ){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         super.onCreate(savedInstance);
@@ -77,5 +106,7 @@ public class FilmActivity extends Fragment {
             }
         });
 
-        return inflater.inflate(R.layout.activity_movie_review,container,false);}
+        return inflater.inflate(R.layout.activity_movie_review,container,false);
+    }
+    */
 }
