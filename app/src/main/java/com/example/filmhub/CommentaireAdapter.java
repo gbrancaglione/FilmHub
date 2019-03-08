@@ -1,12 +1,10 @@
 package com.example.filmhub;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CommentaireAdapter extends RecyclerView.Adapter<CommentaireAdapter.MyViewHolder> {
@@ -35,7 +33,7 @@ public class CommentaireAdapter extends RecyclerView.Adapter<CommentaireAdapter.
                                                      int viewType) {
         // create a new view
         TextView v = (TextView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.commentaire_layout, parent, false);
+                .inflate(R.layout.add_review_layout, parent, false);
 
         MyViewHolder vh = new MyViewHolder(v);
         return vh;

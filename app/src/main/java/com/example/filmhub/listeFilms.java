@@ -91,7 +91,7 @@ public class listeFilms extends Fragment {
 
         }
         Log.d(TAG,jsonArray.toString());
-        list = getView().findViewById(R.id.reviewsList);
+        list = getView().findViewById(R.id.textList);
         list.setText(jsonArray.toString());
 
     }

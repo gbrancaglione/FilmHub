@@ -17,7 +17,10 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -29,7 +32,6 @@ import java.util.List;
 import static android.support.constraint.Constraints.TAG;
 
 public class ProfileActivity extends Fragment {
-    public Button buttonEditProfile;
 
     @Nullable
     JSONArray jsonArray = new JSONArray();
@@ -40,20 +42,17 @@ public class ProfileActivity extends Fragment {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         super.onCreate(savedInstance);
 
-        /*  PART FOR FRAGMENT EDIT PROFILE BUTTON
-
-        buttonEditProfile = getView().findViewById(R.id.buttonEdit);
-        buttonEditProfile.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ProfileActivity()).commit();
-            }
-        });*/
 
         /* get datas from FireBase part*/
+        String email = "";
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user!=null){
+            email = user.getEmail();
+        }
+        Query userReviews = db.collection("Review").whereEqualTo(email, true);
 
-        db.collection("Commentaires")
+
+        db.collection("Review")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -88,13 +87,16 @@ public class ProfileActivity extends Fragment {
         for (int i = 0; i < jsonArray.length(); i++) {
             try {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
+                Log.d(TAG, "json Object = json Array ");
 
                 auteur= jsonObject.getString("auteur");
                 commentaire = jsonObject.getString("commentaire");
                 note= jsonObject.getInt("note");
+                Log.d(TAG, "get auteur, commentaire and note from jsonObject");
 
                 userReviews.add(
                         new Reviews(auteur,commentaire,note));
+                    Log.d(TAG, "start new Review adding to userReviews list");
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -102,8 +104,11 @@ public class ProfileActivity extends Fragment {
 
         }
         Log.d(TAG,jsonArray.toString());
-        list = getView().findViewById(R.id.textList);
+        list = getView().findViewById(R.id.reviewsList);
+        Log.d(TAG, "list = to reviewsList layout");
+
         list.setText(jsonArray.toString());
+        Log.d(TAG, "set text jsonArray to list");
 
     }
 
