@@ -122,6 +122,8 @@ public class MainActivity extends AppCompatActivity
                     new ProfileActivity()).commit();
 
         } else if (id == R.id.nav_gallery) {
+           // Intent i = new Intent(MainActivity.this, listeFilms.class);
+            //startActivity(i);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new listeFilms()).commit();
 
