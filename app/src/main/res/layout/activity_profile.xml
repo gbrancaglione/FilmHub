@@ -44,13 +44,13 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/nomUtilisateur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="1dp"
-                    android:text="Toto"
+                    android:text=""
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textColor="@color/black"
                     android:textSize="30sp"
@@ -59,17 +59,17 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/infoUtilisateur"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="1dp"
-                    android:text="Other Informations (mail, description of user...)"
+                    android:text=""
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textStyle="italic"
                     app:layout_constraintStart_toEndOf="@+id/profilePicture"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                    app:layout_constraintTop_toBottomOf="@+id/nomUtilisateur" />
             </LinearLayout>
 
 
