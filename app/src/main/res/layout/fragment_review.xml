@@ -23,8 +23,9 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    android:text="Gusti le chacal"
                     android:id="@+id/review_auteur"
                     />
 
@@ -44,6 +45,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/Lorem_court"
                 android:id="@+id/review_content"/>
 
         </LinearLayout>

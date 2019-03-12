@@ -40,12 +40,7 @@ public class FilmActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference ref=db.collection("Films").document("7FGtyF0zAAnAwCBvK7uD").collection("Review");
     private ReviewAdapter adapter;
-    View v;
 
-    @Nullable
-    JSONArray jsonArray = new JSONArray();
-    public TextView list;
-    private List<Review> reviews;
 
 
     @Override
@@ -113,31 +108,30 @@ public class FilmActivity extends AppCompatActivity {
     }
 
     private void setUpRecyclerView(){
+        Log.d("Pierre","setUpRecyclerView");
         Query query = ref.orderBy("note",Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Review> options = new FirestoreRecyclerOptions.Builder<Review>()
                 .setQuery(query,Review.class)
                 .build();
-
         adapter = new ReviewAdapter(options);
-
+        adapter.startListening();
+        adapter.notifyDataSetChanged();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.ReviewFilmRecyclerView);
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        /*adapter.setOnItemClickListener(new FilmsAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                Films film = documentSnapshot.toObject(Films.class);
-                String id = documentSnapshot.getId();
-                Toast.makeText(this,"Position : " +position + " ID : "+id,Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(this, FilmActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("film", film);
-                i.putExtras(bundle);
-                startActivity(i);
-            }
-        });*/
 
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        adapter.startListening();
+    }
+    @Override
+    public void onStop(){
+        super.onStop();
+        adapter.stopListening();
     }
 
 }

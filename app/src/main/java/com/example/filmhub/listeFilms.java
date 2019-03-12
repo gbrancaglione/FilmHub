@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,12 +43,14 @@ public class listeFilms extends Fragment implements FilmsAdapter.OnItemClickList
        FirestoreRecyclerOptions<Films> options = new FirestoreRecyclerOptions.Builder<Films>()
                .setQuery(query,Films.class)
                .build();
+
        adapter = new FilmsAdapter(options);
 
        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
        recyclerView.setHasFixedSize(true);
        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
        recyclerView.setAdapter(adapter);
+
        adapter.setOnItemClickListener(new FilmsAdapter.OnItemClickListener() {
            @Override
            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
