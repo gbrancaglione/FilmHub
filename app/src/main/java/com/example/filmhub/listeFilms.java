@@ -85,38 +85,8 @@ public class listeFilms extends Fragment implements FilmsAdapter.OnItemClickList
     }
 }
 
-    }
-    void processData (JSONArray obj){
-        jsonArray=obj;
-         String nomFilm;
-         String realisateur;
-         String genre;
-         String annee;
-         String description;
-         String pays;
-         String image;
-        for (int i = 0; i < jsonArray.length(); i++) {
-            try {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                nomFilm= jsonObject.getString("nomFilm");
-                realisateur = jsonObject.getString("name");
-                genre = jsonObject.getString("genre");
-                annee = jsonObject.getString("annee");
-                pays = jsonObject.getString("pays");
-                image = jsonObject.getString("image");
-                description = jsonObject.getString("description");
-                films.add(
-                            new Films(nomFilm,realisateur,  genre,  annee,  description,  pays,  image));
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-        Log.d(TAG,jsonArray.toString());
-        list = getView().findViewById(R.id.reviewsList);
-        list.setText(jsonArray.toString());
 
 
 
