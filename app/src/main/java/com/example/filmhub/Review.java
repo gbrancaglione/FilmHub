@@ -12,20 +12,20 @@ public class Review implements Parcelable {
 
     }
 
-    public Review(String auteur, String review, Integer note) {
+    public Review(String auteur, Integer note, String review) {
         this.auteur = auteur;
-        this.review = review;
         this.note = note;
+        this.review = review;
     }
 
     protected Review(Parcel in) {
         auteur = in.readString();
-        review = in.readString();
         if (in.readByte() == 0) {
             note = null;
         } else {
             note = in.readInt();
         }
+        review = in.readString();
     }
 
     public static final Creator<Review> CREATOR = new Creator<Review>() {
@@ -40,28 +40,26 @@ public class Review implements Parcelable {
         }
     };
 
-    public String getAuteur() {
-        return auteur;
+    public String getAuteur() { return auteur; }
+
+    public Integer getNote() {
+        return note;
     }
 
     public String getReview() {
         return review;
     }
 
-    public Integer getNote() {
-        return note;
-    }
-
     public void setAuteur(String auteur) {
         this.auteur = auteur;
     }
 
-    public void setReview(String texte) {
-        this.review = texte;
-    }
-
     public void setNote(Integer note) {
         this.note = note;
+    }
+
+    public void setReview(String texte) {
+        this.review = texte;
     }
 
     @Override
@@ -72,7 +70,7 @@ public class Review implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(auteur);
-        dest.writeString(review);
         dest.writeInt(note);
+        dest.writeString(review);
     }
 }

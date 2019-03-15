@@ -74,28 +74,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        FloatingActionButton fab_perso = (FloatingActionButton) findViewById(R.id.fab_perso);
-        fab_perso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                //.setAction("Action", null).show();
-                Intent i = new Intent(MainActivity.this, FilmActivity.class);
-                Bundle bundle = new Bundle();
-                //bundle.putString("film_titre", "Megaman");
-                //bundle.putString("film_annee", "2015");
-                Review review = new Review("Alphonse", "Je kiffe sa race", 5);
-                bundle.putParcelable("review", review);
-                i.putExtras(bundle);
-                Log.d(TAG,"Go to Megaman");
-                startActivity(i);
-
-                /*
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new FilmActivity()).commit();
-                */
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -150,12 +128,20 @@ public class MainActivity extends AppCompatActivity
                     new ProfileActivity()).commit();
 
         } else if (id == R.id.nav_gallery) {
-           // Intent i = new Intent(MainActivity.this, listeFilms.class);
-            //startActivity(i);
+            listeFilms newFrag = new listeFilms();
+            Bundle data = new Bundle();
+            data.putString("orderby","annee");
+            newFrag.setArguments(data);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new listeFilms()).commit();
+                   newFrag).commit();
 
         } else if (id == R.id.nav_slideshow) {
+            listeFilms newFrag = new listeFilms();
+            Bundle data = new Bundle();
+            data.putString("orderby","note");
+            newFrag.setArguments(data);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    newFrag).commit();
 
         } else if (id == R.id.nav_manage) {
             FirebaseAuth.getInstance().signOut();

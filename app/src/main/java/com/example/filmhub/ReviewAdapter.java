@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -24,9 +25,9 @@ public class ReviewAdapter extends FirestoreRecyclerAdapter<Review,ReviewAdapter
 
     @Override
     protected void onBindViewHolder(@NonNull ReviewHolder holder, int position, @NonNull Review model) {
-        Log.d("Pierre",model.getAuteur());
         holder.review_auteurTextView.setText(model.getAuteur());
         holder.review_contentTextView.setText(model.getReview());
+        holder.review_ratingRatingBar.setRating((float) model.getNote());
     }
 
     @NonNull
@@ -43,10 +44,12 @@ public class ReviewAdapter extends FirestoreRecyclerAdapter<Review,ReviewAdapter
     class ReviewHolder extends RecyclerView.ViewHolder {
         TextView review_auteurTextView;
         TextView review_contentTextView;
+        RatingBar review_ratingRatingBar;
         public ReviewHolder(@NonNull View itemView) {
             super(itemView);
             review_auteurTextView = itemView.findViewById(R.id.review_auteur);
             review_contentTextView = itemView.findViewById(R.id.review_content);
+            review_ratingRatingBar = itemView.findViewById(R.id.review_rating);
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){

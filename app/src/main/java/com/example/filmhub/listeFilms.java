@@ -24,10 +24,11 @@ public class listeFilms extends Fragment implements FilmsAdapter.OnItemClickList
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference ref=db.collection("Films");
     private FilmsAdapter adapter;
+    private String orderBy;
     View v;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstance ){
         super.onCreate(savedInstance);
-
+        orderBy = getArguments().getString("orderby");
 
          v = inflater.inflate(R.layout.activity_liste_films,container,false);
 
@@ -39,7 +40,7 @@ public class listeFilms extends Fragment implements FilmsAdapter.OnItemClickList
     }
 
    private void setUpRecyclerView(){
-       Query query = ref.orderBy("nomFilm",Query.Direction.DESCENDING);
+       Query query = ref.orderBy(orderBy,Query.Direction.DESCENDING);
        FirestoreRecyclerOptions<Films> options = new FirestoreRecyclerOptions.Builder<Films>()
                .setQuery(query,Films.class)
                .build();
@@ -60,8 +61,8 @@ public class listeFilms extends Fragment implements FilmsAdapter.OnItemClickList
                Intent i = new Intent(getContext(), FilmActivity.class);
                Bundle bundle = new Bundle();
                bundle.putParcelable("film", film);
-               Log.d("ID", id);
-               //bundle.putString("id", id);
+               Log.d("ID", "Le id : "+id+" fini");
+               bundle.putString("id", id);
                i.putExtras(bundle);
                startActivity(i);
            }

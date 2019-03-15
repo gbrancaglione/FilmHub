@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +39,7 @@ public class FilmActivity extends AppCompatActivity {
     static final String TAG = "MonTag";
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference ref = db.collection("Films").document("7FGtyF0zAAnAwCBvK7uD").collection("Review");
+    private CollectionReference ref;//= db.collection("Films").document("7FGtyF0zAAnAwCBvK7uD").collection("Review");
     private String id;
     private ReviewAdapter adapter;
 
@@ -62,6 +63,7 @@ public class FilmActivity extends AppCompatActivity {
             String description;
             String pays;
             String imageFilm;
+            float note;
             if (i.hasExtra("film")) {
                 Log.d(TAG,"recup film");
                 Films film = bundle.getParcelable("film");
@@ -72,6 +74,7 @@ public class FilmActivity extends AppCompatActivity {
                 description = film.getDescription();
                 pays = film.getPays();
                 imageFilm = film.getImageFilm();
+                note = film.getNote();
                 TextView film_titreTextView = (TextView) findViewById(R.id.film_titre);
                 film_titreTextView.setText(nomFilm);
                 TextView film_realisateurTextView = (TextView) findViewById(R.id.film_realisateur);
@@ -86,6 +89,8 @@ public class FilmActivity extends AppCompatActivity {
                 film_paysTextView.setText(pays);
                 ImageView film_afficheImageView = (ImageView) findViewById(R.id.film_affiche);
                 Picasso.get().load(imageFilm).into(film_afficheImageView);
+                RatingBar ratingBar = findViewById(R.id.film_noteGlobale);
+                ratingBar.setRating(note);
             }
 
             if (i.hasExtra("id")) {
@@ -113,7 +118,7 @@ public class FilmActivity extends AppCompatActivity {
 
     private void setUpRecyclerView(){
         Log.d("Pierre","setUpRecyclerView");
-        //ref =db.collection("Films").document(id).collection("Review");
+        ref =db.collection("Films").document(id).collection("Review");
         Query query = ref.orderBy("note",Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Review> options = new FirestoreRecyclerOptions.Builder<Review>()
                 .setQuery(query,Review.class)

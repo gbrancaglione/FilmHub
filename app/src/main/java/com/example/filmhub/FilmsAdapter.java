@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -29,6 +30,7 @@ public class FilmsAdapter extends FirestoreRecyclerAdapter<Films,FilmsAdapter.Fi
     protected void onBindViewHolder(@NonNull FilmsHolder holder, int position, @NonNull Films model) {
         holder.nomFilm.setText(model.getNomFilm());
         Picasso.get().load(model.getImageFilm()).into(holder.imageFilm);
+        holder.note.setRating(model.getNote());
     }
 
     @NonNull
@@ -42,10 +44,12 @@ public class FilmsAdapter extends FirestoreRecyclerAdapter<Films,FilmsAdapter.Fi
     class FilmsHolder extends RecyclerView.ViewHolder {
         ImageView imageFilm;
         TextView nomFilm;
+        RatingBar note;
         public FilmsHolder(@NonNull View itemView) {
             super(itemView);
             nomFilm = itemView.findViewById(R.id.nomFilm);
             imageFilm = itemView.findViewById(R.id.imageFilm);
+            note = itemView.findViewById(R.id.rating);
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){

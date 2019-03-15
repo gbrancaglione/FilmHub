@@ -11,6 +11,7 @@ public class Films implements Parcelable {
     private String description;
     private String pays;
     private String imageFilm;
+    private float note;
 
     protected Films(Parcel in) {
         nomFilm = in.readString();
@@ -20,6 +21,7 @@ public class Films implements Parcelable {
         description = in.readString();
         pays = in.readString();
         imageFilm = in.readString();
+        note = in.readFloat();
     }
 
     public static final Creator<Films> CREATOR = new Creator<Films>() {
@@ -62,11 +64,13 @@ public class Films implements Parcelable {
         return imageFilm;
     }
 
+    public float getNote() { return note; }
+
     public Films(){
 
     }
 
-    public Films(String nomFilm, String realisateur, String genre, int annee, String description, String pays, String imageFilm) {
+    public Films(String nomFilm, String realisateur, String genre, int annee, String description, String pays, String imageFilm, float note) {
         this.nomFilm = nomFilm;
         this.realisateur = realisateur;
         this.genre = genre;
@@ -74,6 +78,7 @@ public class Films implements Parcelable {
         this.description = description;
         this.pays = pays;
         this.imageFilm = imageFilm;
+        this.note = note;
     }
 
     @Override
@@ -90,5 +95,6 @@ public class Films implements Parcelable {
         dest.writeString(description);
         dest.writeString(pays);
         dest.writeString(imageFilm);
+        dest.writeFloat(note);
     }
 }
