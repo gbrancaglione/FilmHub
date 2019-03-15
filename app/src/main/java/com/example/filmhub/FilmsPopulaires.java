@@ -38,7 +38,7 @@ public class FilmsPopulaires extends Fragment implements FilmsAdapter.OnItemClic
     }
 
     private void setUpRecyclerView(){
-        Query query = ref.orderBy("nomFilm",Query.Direction.DESCENDING);
+        Query query = ref.orderBy("note",Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Films> options = new FirestoreRecyclerOptions.Builder<Films>()
                 .setQuery(query,Films.class)
                 .build();
