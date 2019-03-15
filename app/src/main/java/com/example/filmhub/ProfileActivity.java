@@ -101,10 +101,11 @@ public class ProfileActivity extends Fragment {
             }
 
         }
+        /*
         Log.d(TAG,jsonArray.toString());
         list = getView().findViewById(R.id.textList);
         list.setText(jsonArray.toString());
-
+        */
     }
 
 }

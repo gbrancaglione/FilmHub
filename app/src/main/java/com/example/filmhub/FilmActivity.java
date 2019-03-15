@@ -38,10 +38,9 @@ public class FilmActivity extends AppCompatActivity {
     static final String TAG = "MonTag";
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference ref=db.collection("Films").document("7FGtyF0zAAnAwCBvK7uD").collection("Review");
+    private CollectionReference ref = db.collection("Films").document("7FGtyF0zAAnAwCBvK7uD").collection("Review");
+    private String id;
     private ReviewAdapter adapter;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +88,11 @@ public class FilmActivity extends AppCompatActivity {
                 Picasso.get().load(imageFilm).into(film_afficheImageView);
             }
 
+            if (i.hasExtra("id")) {
+                Log.d(TAG, "recup id");
+                id = bundle.getString("id");
+            }
+
         }
 
         Button button = findViewById(R.id.film_bouton_ecrire_review);
@@ -109,6 +113,7 @@ public class FilmActivity extends AppCompatActivity {
 
     private void setUpRecyclerView(){
         Log.d("Pierre","setUpRecyclerView");
+        //ref =db.collection("Films").document(id).collection("Review");
         Query query = ref.orderBy("note",Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Review> options = new FirestoreRecyclerOptions.Builder<Review>()
                 .setQuery(query,Review.class)

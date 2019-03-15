@@ -60,7 +60,8 @@ public class listeFilms extends Fragment implements FilmsAdapter.OnItemClickList
                Intent i = new Intent(getContext(), FilmActivity.class);
                Bundle bundle = new Bundle();
                bundle.putParcelable("film", film);
-               bundle.putString("id", id);
+               Log.d("ID", id);
+               //bundle.putString("id", id);
                i.putExtras(bundle);
                startActivity(i);
            }
@@ -85,7 +86,7 @@ public class listeFilms extends Fragment implements FilmsAdapter.OnItemClickList
     }
 }
 
-    }
+    /*}
     void processData (JSONArray obj){
         jsonArray=obj;
          String nomFilm;
@@ -117,7 +118,7 @@ public class listeFilms extends Fragment implements FilmsAdapter.OnItemClickList
         Log.d(TAG,jsonArray.toString());
         list = getView().findViewById(R.id.reviewsList);
         list.setText(jsonArray.toString());
-
+        */
 
 
 
