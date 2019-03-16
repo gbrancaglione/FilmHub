@@ -47,10 +47,13 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG ="MonTag" ;
     private static final String COMMA_DELIMITER = ",";
     JSONArray jsonArray = new JSONArray();
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         FirebaseApp.initializeApp(this);
+        mAuth = FirebaseAuth.getInstance();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
