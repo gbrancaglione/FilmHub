@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity
     private static final String TAG ="debug" ;
     private static final String COMMA_DELIMITER = ",";
     JSONArray jsonArray = new JSONArray();
+    final List myList = new ArrayList();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +64,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        //.setAction("Action", null).show();
+                //.setAction("Action", null).show();
                 Intent i = new Intent(MainActivity.this, CommentReviewActivity.class);
-                Log.d(TAG,"Go to commentaire review");
+                Log.d(TAG, "Go to commentaire review");
                 startActivity(i);
             }
         });
@@ -128,6 +130,8 @@ public class MainActivity extends AppCompatActivity
                     new listeFilms()).commit();
 
         } else if (id == R.id.nav_slideshow) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new FilmsPopulaires()).commit();
 
         } else if (id == R.id.nav_manage) {
             FirebaseAuth.getInstance().signOut();
