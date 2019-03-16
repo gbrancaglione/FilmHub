@@ -36,7 +36,7 @@ public class ProfileActivity extends Fragment {
     public TextView list;
     private List<Reviews> userReviews;
 
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,  Bundle savedInstance ){
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstance) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         super.onCreate(savedInstance);
 
@@ -65,7 +65,6 @@ public class ProfileActivity extends Fragment {
                                 //Log.d(TAG, document.getId() + " => " + document.getData());
                                 jsonArray.put(document.getData());
                             }
-                            processData(jsonArray);
                         } else {
                             Log.d(TAG, "Error getting documents.", task.getException());
                         }
@@ -75,36 +74,10 @@ public class ProfileActivity extends Fragment {
                 });
 
 
-        return inflater.inflate(R.layout.activity_profile,container,false);
+        return inflater.inflate(R.layout.activity_profile, container, false);
 
     }
-
-    void processData (JSONArray obj){
-        jsonArray=obj;
-        String auteur;
-        String commentaire;
-        int note;
-
-        for (int i = 0; i < jsonArray.length(); i++) {
-            try {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                auteur= jsonObject.getString("auteur");
-                commentaire = jsonObject.getString("commentaire");
-                note= jsonObject.getInt("note");
-
-                userReviews.add(
-                        new Reviews(auteur,commentaire,note));
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-        Log.d(TAG,jsonArray.toString());
-        list = getView().findViewById(R.id.textList);
-        list.setText(jsonArray.toString());
-
-    }
-
 }
+
+
+
