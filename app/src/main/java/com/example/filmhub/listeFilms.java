@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -58,13 +60,18 @@ public class listeFilms extends Fragment implements FilmsAdapter.OnItemClickList
                Films film = documentSnapshot.toObject(Films.class);
                String id = documentSnapshot.getId();
                Toast.makeText(getContext(),"Position : " +position + " ID : "+id,Toast.LENGTH_SHORT).show();
-               Intent i = new Intent(getContext(), FilmActivity.class);
+               Log.d("ID", "Le id : "+id+" fini");
+               Fragment fragmentGet = new FilmActivity();
+               FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+               FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+               fragmentTransaction.replace(R.id.fragment_container, fragmentGet);
+               fragmentTransaction.addToBackStack(null);
+               fragmentTransaction.commit();
                Bundle bundle = new Bundle();
                bundle.putParcelable("film", film);
-               Log.d("ID", "Le id : "+id+" fini");
                bundle.putString("id", id);
-               i.putExtras(bundle);
-               startActivity(i);
+               fragmentGet.setArguments(bundle);
+
            }
        });
 
