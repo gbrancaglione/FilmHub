@@ -90,11 +90,11 @@
             android:layout_weight="1"
             android:hint="Ecrivez un commentaire!" />
 
-        <ImageView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="5"
-            android:src="@drawable/ic_menu_send" />
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="5"
+                android:src="@drawable/ic_menu_send" />
 
         </LinearLayout>
 

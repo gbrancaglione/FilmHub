@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,19 +43,25 @@ public class listeFilms extends Fragment implements FilmsAdapter.OnItemClickList
        FirestoreRecyclerOptions<Films> options = new FirestoreRecyclerOptions.Builder<Films>()
                .setQuery(query,Films.class)
                .build();
+
        adapter = new FilmsAdapter(options);
 
        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
        recyclerView.setHasFixedSize(true);
        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
        recyclerView.setAdapter(adapter);
+
        adapter.setOnItemClickListener(new FilmsAdapter.OnItemClickListener() {
            @Override
            public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                Films film = documentSnapshot.toObject(Films.class);
                String id = documentSnapshot.getId();
                Toast.makeText(getContext(),"Position : " +position + " ID : "+id,Toast.LENGTH_SHORT).show();
-               Intent i = new Intent(getContext(), CommentReviewActivity.class);
+               Intent i = new Intent(getContext(), FilmActivity.class);
+               Bundle bundle = new Bundle();
+               bundle.putParcelable("film", film);
+               bundle.putString("id", id);
+               i.putExtras(bundle);
                startActivity(i);
            }
        });
@@ -78,9 +85,38 @@ public class listeFilms extends Fragment implements FilmsAdapter.OnItemClickList
     }
 }
 
+    }
+    void processData (JSONArray obj){
+        jsonArray=obj;
+         String nomFilm;
+         String realisateur;
+         String genre;
+         String annee;
+         String description;
+         String pays;
+         String image;
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
 
+                nomFilm= jsonObject.getString("nomFilm");
+                realisateur = jsonObject.getString("name");
+                genre = jsonObject.getString("genre");
+                annee = jsonObject.getString("annee");
+                pays = jsonObject.getString("pays");
+                image = jsonObject.getString("image");
+                description = jsonObject.getString("description");
+                films.add(
+                            new Films(nomFilm,realisateur,  genre,  annee,  description,  pays,  image));
 
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
+        }
+        Log.d(TAG,jsonArray.toString());
+        list = getView().findViewById(R.id.reviewsList);
+        list.setText(jsonArray.toString());
 
 
 

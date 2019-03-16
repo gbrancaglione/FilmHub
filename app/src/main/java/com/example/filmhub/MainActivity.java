@@ -44,11 +44,9 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG ="debug" ;
+    private static final String TAG ="MonTag" ;
     private static final String COMMA_DELIMITER = ",";
     JSONArray jsonArray = new JSONArray();
-    final List myList = new ArrayList();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +62,38 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                //.setAction("Action", null).show();
-                Intent i = new Intent(MainActivity.this, CommentReviewActivity.class);
-                Log.d(TAG, "Go to commentaire review");
+                        //.setAction("Action", null).show();
+                Intent i = new Intent(MainActivity.this, FilmActivity.class);
+                Log.d(TAG,"Go to film reviews");
                 startActivity(i);
+
+                /*
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new FilmActivity()).commit();
+                */
+            }
+        });
+
+        FloatingActionButton fab_perso = (FloatingActionButton) findViewById(R.id.fab_perso);
+        fab_perso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //.setAction("Action", null).show();
+                Intent i = new Intent(MainActivity.this, FilmActivity.class);
+                Bundle bundle = new Bundle();
+                //bundle.putString("film_titre", "Megaman");
+                //bundle.putString("film_annee", "2015");
+                Review review = new Review("Alphonse", "Je kiffe sa race", 5);
+                bundle.putParcelable("review", review);
+                i.putExtras(bundle);
+                Log.d(TAG,"Go to Megaman");
+                startActivity(i);
+
+                /*
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new FilmActivity()).commit();
+                */
             }
         });
 
@@ -130,8 +156,6 @@ public class MainActivity extends AppCompatActivity
                     new listeFilms()).commit();
 
         } else if (id == R.id.nav_slideshow) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new FilmsPopulaires()).commit();
 
         } else if (id == R.id.nav_manage) {
             FirebaseAuth.getInstance().signOut();
