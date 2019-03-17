@@ -15,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
 
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,7 +25,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -44,6 +48,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static final String TAG ="MonTag" ;
     private static final String COMMA_DELIMITER = ",";
     JSONArray jsonArray = new JSONArray();
@@ -87,6 +92,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        getUserProfile();
     }
     @Override
     public void onBackPressed() {
@@ -155,6 +162,40 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void getUserProfile() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String email = user.getEmail();
+            Log.d(TAG,"mail utilisateur : " +email);
+            DocumentReference docRef = db.collection("Utilisateurs").document(email);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            String getEmail = document.getString("adresseEmail");
+                            String getUsername = document.getString("nomUtilisateur");
+                            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+                            View hView =  navigationView.getHeaderView(0);
+                            final TextView Name = (TextView)hView.findViewById(R.id.userName);
+                            Name.setText(getUsername);
+                            Log.d(TAG,"username : " +getUsername);
+                            final TextView Mail = (TextView)hView.findViewById(R.id.userMail);
+                            Mail.setText(getEmail);
+                            Log.d(TAG,"mail : " +getEmail);
+
+                        } else {
+                            Log.d(TAG, "No such document");
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                }
+            });
+        }
     }
 
 }

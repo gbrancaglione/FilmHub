@@ -48,20 +48,20 @@ public class AccountCreationActivity extends AppCompatActivity {
         Map<String, Object> user = new HashMap<>();
         user.put("adresseEmail", email);
         user.put("nomUtilisateur", name);
-        user.put("photoProfil", "photo");
 
         db.collection("Utilisateurs")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                .document(email)
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                    public void onSuccess(Void aVoid) {
+                        Log.w(TAG, "User registered successfully !");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
+                        Log.w(TAG, "Error adding user", e);
                     }
                 });
 
@@ -82,64 +82,64 @@ public class AccountCreationActivity extends AppCompatActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "in account creation on create");
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_accountcreation);
+    Log.d(TAG, "in account creation on create");
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_accountcreation);
 
-            mDatabase = FirebaseDatabase.getInstance().getReference();
+    mDatabase = FirebaseDatabase.getInstance().getReference();
 
-            email = (EditText) findViewById(R.id.EmailCreation);
-            password = (EditText) findViewById(R.id.PasswordCreation);
-            registerButton = (Button) findViewById(R.id.register_button);
-            nameCrea = (EditText) findViewById(R.id.NameCreation);
+    email = (EditText) findViewById(R.id.EmailCreation);
+    password = (EditText) findViewById(R.id.PasswordCreation);
+    registerButton = (Button) findViewById(R.id.register_button);
+    nameCrea = (EditText) findViewById(R.id.NameCreation);
 
-            firebaseAuth = FirebaseAuth.getInstance();
+    firebaseAuth = FirebaseAuth.getInstance();
 
-            TextView TextLinkCreation = (TextView) findViewById(R.id.TextLinkCreation);
-            TextLinkCreation.setPaintFlags(TextLinkCreation.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            TextLinkCreation.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onBackPressed();
-                }
-            });
+    TextView TextLinkCreation = (TextView) findViewById(R.id.TextLinkCreation);
+    TextLinkCreation.setPaintFlags(TextLinkCreation.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+    TextLinkCreation.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            onBackPressed();
+        }
+    });
 
-            registerButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    final String emails = email.getText().toString();
-                    String passwords = password.getText().toString();
+    registerButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            final String emails = email.getText().toString();
+            String passwords = password.getText().toString();
 
-                    if (TextUtils.isEmpty(emails)) {
-                        Toast.makeText(getApplicationContext(), "Please fill in the required fields", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if (TextUtils.isEmpty(passwords)) {
-                        Toast.makeText(getApplicationContext(), "Please fill in the required fields", Toast.LENGTH_SHORT).show();
-                    }
+            if (TextUtils.isEmpty(emails)) {
+                Toast.makeText(getApplicationContext(), "Please fill in the required fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (TextUtils.isEmpty(passwords)) {
+                Toast.makeText(getApplicationContext(), "Please fill in the required fields", Toast.LENGTH_SHORT).show();
+            }
 
-                    if (passwords.length() < 6) {
-                        Toast.makeText(getApplicationContext(), "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
-                    }
+            if (passwords.length() < 6) {
+                Toast.makeText(getApplicationContext(), "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+            }
 
-                    firebaseAuth.createUserWithEmailAndPassword(emails, passwords)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        String names = nameCrea.getText().toString();
-                                        writeNewUser(names,emails);
-                                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                                        finish();
-                                    }
-                                }
-                            });
-
-
-                }
-            });
+            firebaseAuth.createUserWithEmailAndPassword(emails, passwords)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                String names = nameCrea.getText().toString();
+                                writeNewUser(names,emails);
+                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                finish();
+                            }
+                        }
+                    });
 
 
         }
-    }
+    });
+
+
+}
+}
 
