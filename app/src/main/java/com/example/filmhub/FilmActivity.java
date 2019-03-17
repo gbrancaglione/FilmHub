@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,15 +43,15 @@ public class FilmActivity extends Fragment {
     private String id;
     View v;
     private ReviewAdapter adapter;
+
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstance ){
         super.onCreate(savedInstance);
 
         v = inflater.inflate(R.layout.activity_movie_review,container,false);
 
+        final Bundle bundle = this.getArguments();
 
-
-
-        Bundle bundle = this.getArguments();
         if (bundle != null){
 
             String nomFilm;
@@ -88,23 +89,33 @@ public class FilmActivity extends Fragment {
                 RatingBar ratingBar = v.findViewById(R.id.film_noteGlobale);
                 ratingBar.setRating(note);
 
-
                 Log.d(TAG, "recup id");
                 id = bundle.getString("id");
 
 
         }
 
-        Button button = v.findViewById(R.id.film_bouton_ecrire_review);
+        final Button button = v.findViewById(R.id.film_bouton_ecrire_review);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG,"Touched ecrire une review");
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                //Intent i = new Intent(MainActivity.this, FilmActivity.class);
-                //Log.d(TAG,"Go to film reviews");
-                //startActivity(i);
+                AddReview newFrag = new AddReview();
+                Bundle bundleReview = new Bundle();
+                newFrag.setArguments(bundleReview);
+
+                Films film = bundle.getParcelable("film");
+
+                bundleReview.putString("nomFilm", film.getNomFilm());
+                bundleReview.putString("description", film.getDescription());
+                bundleReview.putString("image", film.getImageFilm());
+                bundleReview.putString("id", bundle.getString("id"));
+
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, newFrag);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
             }
         });
         setUpRecyclerView();
