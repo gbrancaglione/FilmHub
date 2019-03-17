@@ -26,6 +26,7 @@ public class ReviewAdapter extends FirestoreRecyclerAdapter<Review,ReviewAdapter
     @Override
     protected void onBindViewHolder(@NonNull ReviewHolder holder, int position, @NonNull Review model) {
         holder.review_auteurTextView.setText(model.getAuteur());
+        holder.review_filmTextView.setText(model.getFilm());
         holder.review_contentTextView.setText(model.getReview());
         holder.review_ratingRatingBar.setRating((float) model.getNote());
     }
@@ -39,17 +40,22 @@ public class ReviewAdapter extends FirestoreRecyclerAdapter<Review,ReviewAdapter
         return new ReviewHolder(v);
     }
 
+    public void setOnItemClickListener(FilmsAdapter.OnItemClickListener onItemClickListener) {
+    }
 
 
     class ReviewHolder extends RecyclerView.ViewHolder {
         TextView review_auteurTextView;
         TextView review_contentTextView;
+        TextView review_filmTextView;
         RatingBar review_ratingRatingBar;
+
         public ReviewHolder(@NonNull View itemView) {
             super(itemView);
             review_auteurTextView = itemView.findViewById(R.id.review_auteur);
             review_contentTextView = itemView.findViewById(R.id.review_content);
             review_ratingRatingBar = itemView.findViewById(R.id.review_rating);
+            review_filmTextView = itemView.findViewById(R.id.nomFilmReview);
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
