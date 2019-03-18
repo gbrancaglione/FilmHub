@@ -87,7 +87,7 @@ public class ProfileActivity extends Fragment {
                     recyclerView.setAdapter(adapter);
                     adapter.startListening();
 
-                    
+
                 }
 
             }
