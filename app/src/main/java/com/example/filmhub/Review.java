@@ -7,15 +7,17 @@ public class Review implements Parcelable {
     private String auteur;
     private String review;
     private Integer note;
+    private String film;
 
     public Review() {
 
     }
 
-    public Review(String auteur, Integer note, String review) {
+    public Review(String auteur, Integer note, String review, String film) {
         this.auteur = auteur;
         this.note = note;
         this.review = review;
+        this.film = film;
     }
 
     protected Review(Parcel in) {
@@ -26,6 +28,7 @@ public class Review implements Parcelable {
             note = in.readInt();
         }
         review = in.readString();
+        film = in.readString();
     }
 
     public static final Creator<Review> CREATOR = new Creator<Review>() {
@@ -49,6 +52,7 @@ public class Review implements Parcelable {
     public String getReview() {
         return review;
     }
+    public String getFilm() {return  film;}
 
     public void setAuteur(String auteur) {
         this.auteur = auteur;
@@ -61,6 +65,10 @@ public class Review implements Parcelable {
     public void setReview(String texte) {
         this.review = texte;
     }
+    public void setFilm(String texte) {
+        this.film = texte;
+    }
+
 
     @Override
     public int describeContents() {
@@ -72,5 +80,7 @@ public class Review implements Parcelable {
         dest.writeString(auteur);
         dest.writeInt(note);
         dest.writeString(review);
+        dest.writeString(film);
+
     }
 }

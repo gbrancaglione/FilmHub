@@ -38,7 +38,10 @@
                     android:isIndicator="true"
                     style = "?android:attr/ratingBarStyleSmall"
                     />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nomFilmReview"/>
             </LinearLayout>
 
             <TextView
